@@ -1,0 +1,17 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">{{event?.nome}}</h6>
+  </div>
+  <div class="card-body">
+    <div class="text-center">
+      <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="assets/images/carros.jpg" alt="">
+    </div>
+    <p class="m-0  text-primary">{{event?.dataEvento  | date: 'dd/MM/yyyy' }} - {{event?.cidade}}</p>
+    <a [routerLink]="['/events', event.id]" class="btn btn-info btn-icon-split">
+      <span class="icon text-white-50">
+        <i class="fas fa-info-circle"></i>
+      </span>
+      <span class="text">Detalhes</span>
+    </a>
+  </div>
+</div>

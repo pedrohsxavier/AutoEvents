@@ -1,0 +1,42 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+ <h1 class="h3 mb-0 text-gray-800">Evento</h1><br>
+
+ <a [routerLink]="['./register']" class="btn btn-success btn-icon-split">
+  <span class="icon text-white-50">
+    <i class="fas fa-plus"></i>
+  </span>
+  <span class="text">Inscrever</span>
+</a>
+</div>
+<!-- Content Row -->
+<div class="row">
+  <div class="card shadow col-md-12">
+     <div class="card-header py-3">
+       <h6 class="m-0 font-weight-bold text-primary">{{event?.nome}}</h6>
+     </div>
+     <div class="card-body col-md-12">
+       <p>{{event?.descricao}}<p>
+       <p>Cidade: {{event?.cidade}}</p>
+       <p>Pais: {{event?.pais}}</p>
+       <p>Data: {{event?.dataEvento}}</p>
+       <div class="row">
+         <div class="col-xl-3 col-md-3 mb-3">
+           <div class="card border-left-success shadow h-100 py-2">
+             <div class="card-body">
+               <div class="row no-gutters align-items-center">
+                 <div class="col mr-2">
+                   <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Valor</div>
+                   <div class="h5 mb-0 font-weight-bold text-gray-800">R{{event?.ingressoValor | currency}}</div>
+                 </div>
+                 <div class="col-auto">
+                   <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+        </div>
+     </div>
+   </div>
+
+</div>

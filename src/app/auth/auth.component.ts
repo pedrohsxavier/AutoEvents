@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { UserService } from './../user/user.service'
+import { User } from './../user/user.model'
 @Component({
   selector: 'pae-auth',
   templateUrl: './auth.component.html',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  @Input() user: User
 
-  ngOnInit() {
+  constructor(private userService: UserService) { }
+
+  ngOnInit() {    
   }
 
 }
