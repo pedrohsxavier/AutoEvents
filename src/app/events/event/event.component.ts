@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Event } from './event.model'
+import { EventService } from './../events.service'
 
 @Component({
   selector: 'pae-event',
@@ -10,10 +11,10 @@ export class EventComponent implements OnInit {
 
   @Input() event: Event
 
-  constructor() { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit() {
     console.log(this.event)
   }
-
+  
 }

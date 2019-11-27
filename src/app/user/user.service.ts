@@ -12,7 +12,7 @@ export class UserService{
   }
 
   createUser(user: User): void{
-    this.http.post(`http://localhost:8080/api/usuarios`, user).toPromise().then(data => {
+    this.http.post(`${AUTO_EVENTS}/usuarios`, user).toPromise().then(data => {
       console.log(data);
     })
 

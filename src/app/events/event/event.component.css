@@ -1,0 +1,9 @@
+.float-right{
+  display: inline-block;
+  float: right;
+}
+
+.float-left{
+  display: inline-block;
+  float: left;
+}

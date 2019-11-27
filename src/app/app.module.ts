@@ -14,6 +14,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
 import { EventService } from './events/events.service'
+import { SharedModule } from './shared/shared.module'
 // import { RegisterEventComponent} from './events/register/register.component'
 
 
@@ -31,7 +32,8 @@ import { EventService } from './events/events.service'
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [UserService, EventService],
   bootstrap: [AppComponent]

@@ -16,11 +16,16 @@ export class ProfileComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.eventService.eventById(this.route.snapshot.params['id']).subscribe((res: Event[]) => {      
+    this.eventService.eventById(this.route.snapshot.params['id']).subscribe((res: Event) => {
       this.event = res;
     }, err => {
       console.log(err);
     });
+  }
+
+  excluirEvento(): void{
+    this.eventService.removeById(this.event.id)
+    console.log(this.event)
   }
 
 }

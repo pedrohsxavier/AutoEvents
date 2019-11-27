@@ -7,6 +7,7 @@ import { RegisterEventComponent} from './register/register.component';
 import { ProfileComponent } from './profile/profile.component'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
+import { SharedModule } from './../shared/shared.module'
 
 const ROUTES: Routes = [
   {path:'', component: EventsComponent },
@@ -21,7 +22,7 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations:[EventsComponent, EventComponent, RegisterEventComponent, ProfileComponent],
-  imports: [ RouterModule.forChild(ROUTES), CommonModule, HttpClientModule, FormsModule]
+  imports: [ RouterModule.forChild(ROUTES), CommonModule, HttpClientModule, FormsModule, SharedModule]
 })
 export class EventsModule{
 
