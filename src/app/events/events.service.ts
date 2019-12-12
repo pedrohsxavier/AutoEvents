@@ -13,15 +13,22 @@ export class EventService{
   constructor(private http: HttpClient){
   }
 
-  createEvent(event: Event): void{
-    this.http.post(`${AUTO_EVENTS}/eventos`, event).toPromise().then(data => {
-      console.log(data);
-    })
+  createEvent(event: Event): Observable<any>{
+     return this.http.post(`${AUTO_EVENTS}/eventos`, event).pipe(
+      tap(event => console.log('fetched event'))
+    );
   }
-  getEvents(): Observable<Event[]>{
-    return this.http.get<Event[]>(`${AUTO_EVENTS}/eventos`)
+
+  updateEvent(event: Event): Observable<any>{
+    return this.http.put(`${AUTO_EVENTS}/eventos/${event.id}`, event).pipe(
+     tap(event => console.log('fetched event'))
+   );
+  }
+
+  getEvents(): Observable<any[]>{
+    return this.http.get<any[]>(`${AUTO_EVENTS}/eventos`)
     .pipe(
-      tap(event => console.log('fetched events'))
+      tap(event => console.log(event))
     );
   }
 
@@ -31,11 +38,10 @@ export class EventService{
       );
   }
 
-  removeById(id: string) : void {
-    console.log(AUTO_EVENTS);
-      this.http.delete(`${AUTO_EVENTS}/eventos/${id}`).toPromise().then(data => {
-        console.log(data);
-      });
+  removeById(id: string) :  Observable<any> {
+      return this.http.delete(`${AUTO_EVENTS}/eventos/${id}`).pipe(
+        tap(event => console.log('fetched event'))
+      );
   }
 
 }

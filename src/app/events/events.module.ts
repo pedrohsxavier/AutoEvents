@@ -7,12 +7,14 @@ import { RegisterEventComponent} from './register/register.component';
 import { ProfileComponent } from './profile/profile.component'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
-import { SharedModule } from './../shared/shared.module'
+import { SharedModule } from './../shared/shared.module';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 const ROUTES: Routes = [
   {path:'', component: EventsComponent },
   {path:'register', component: RegisterEventComponent },
-  {path:':id', component: ProfileComponent}
+  {path:':id', component: ProfileComponent},
+  {path:'edit/:id', component: RegisterEventComponent}
     // children:[
     //   {path:'', redirectTo:'', pathMatch:'full'},
     //   {path:'reviews', component: ReviewsComponent},
@@ -22,7 +24,7 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations:[EventsComponent, EventComponent, RegisterEventComponent, ProfileComponent],
-  imports: [ RouterModule.forChild(ROUTES), CommonModule, HttpClientModule, FormsModule, SharedModule]
+  imports: [ RouterModule.forChild(ROUTES), CommonModule, HttpClientModule, FormsModule, SharedModule, SweetAlert2Module]
 })
 export class EventsModule{
 

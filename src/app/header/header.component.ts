@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './../auth/auth.service'
+import { Subscription } from 'rxjs';
+import { User } from './../user/user.model'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'pae-header',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  currentUserSubscription: Subscription;
+  currentUser: User
+
+  constructor(private authenticationService: AuthenticationService,
+              private route: ActivatedRoute,
+              private router: Router) {
+    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+      this.currentUser = user;
+    });
+  }
 
   ngOnInit() {
   }
 
+  logout(): void{
+    this.authenticationService.logout()
+    this.router.navigate(['/login'])
+  }
 }

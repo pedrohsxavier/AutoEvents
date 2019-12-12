@@ -8,34 +8,34 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form class="user">
+              <form #form="ngForm" class="user" novalidate>
                 <div class="form-group row">
                   <div class="col-sm-12 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" placeholder="First Name" name="nome" [(ngModel)]="user.nome">
+                    <input type="text" class="form-control form-control-user" placeholder="Name (Obrigatório)" name="nome" [(ngModel)]="user.nome" required>
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" placeholder="Email Address" name="email" [(ngModel)]="user.email">
+                  <input type="email" class="form-control form-control-user" placeholder="Email Address (Obrigatório)" name="email" [(ngModel)]="user.email" required>
                 </div>
                 <div class="form-group">
                   <input type="date" class="form-control form-control-user" name="dataNascimento" [(ngModel)]="user.dataNascimento">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" placeholder="Password" name="senha" [(ngModel)]="user.senha">
+                    <input type="password" class="form-control form-control-user" placeholder="Senha (Obrigatório min 8 digitos)" name="senha" [(ngModel)]="user.senha" required required minlength="8">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" placeholder="Repeat Password">
+                    <input type="password" class="form-control form-control-user" placeholder="Repetir senha (Obrigatório min 8 digitos)" name="repetirSenha" ngModel required minlength="8">
                   </div>
                 </div>
-                <a (click)="cadastrarUsuario()" class="btn btn-primary btn-user btn-block" href="#">
+                <button  [routerLink]="['/login']" (click)="cadastrarUsuario()" class="btn btn-primary btn-user btn-block" [disabled]="!form.valid" [swal]="['Sucesso', 'Cadastrado com sucesso', 'success']">
                   Register Account
-                </a>
+                </button>
               </form>
               <hr>
-              <div class="text-center">
+              <!-- <div class="text-center">
                 <a class="small" href="forgot-password.html">Forgot Password?</a>
-              </div>
+              </div> -->
               <div class="text-center">
                 <a class="small" href="login.html">Already have an account? Login!</a>
               </div>

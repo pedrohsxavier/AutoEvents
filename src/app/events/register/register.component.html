@@ -34,9 +34,9 @@
             <input type="text" class="form-control form-control-user" id="eventCity" placeholder="Pais" name="pais" [(ngModel)]="event.pais">
           </div>
         </div>
-        <a (click)="cadastrarEvento()" href="#" class="btn btn-primary btn-user btn-block">
-          Cadastrar Evento
-        </a>
+        <button [routerLink]="['/events']" (click)="cadastrarEvento()" class="btn btn-primary btn-user btn-block" [swal]="['Sucesso', 'Cadastrado com sucesso', 'success']" >
+          Salvar Evento
+        </button>
       </form>
     </div>
   </div>

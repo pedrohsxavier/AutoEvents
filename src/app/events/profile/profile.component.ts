@@ -1,7 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Event } from './../event/event.model'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { EventService } from './../events.service'
+import { AuthenticationService } from './../../auth/auth.service'
+import { Subscription } from 'rxjs';
+import { User } from './../../user/user.model'
 
 @Component({
   selector: 'pae-profile',
@@ -11,9 +14,18 @@ import { EventService } from './../events.service'
 export class ProfileComponent implements OnInit {
 
   @Input() event: Event
+  currentUserSubscription: Subscription;
+  currentUser: User
 
-  constructor(private eventService: EventService,
-              private route: ActivatedRoute) { }
+  constructor
+  (private eventService: EventService,
+   private route: ActivatedRoute,
+   private router: Router,
+   private authenticationService: AuthenticationService) {
+      this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+      this.currentUser = user;
+});
+}
 
   ngOnInit() {
     this.eventService.eventById(this.route.snapshot.params['id']).subscribe((res: Event) => {
@@ -24,7 +36,11 @@ export class ProfileComponent implements OnInit {
   }
 
   excluirEvento(): void{
-    this.eventService.removeById(this.event.id)
+    this.eventService.removeById(this.event.id).toPromise().then(data => {
+      this.router.navigate(["/events"])
+      console.log("Removed data ", data)
+    })
+
     console.log(this.event)
   }
 

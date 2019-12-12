@@ -11,11 +11,12 @@ import { User } from './../user/user.model'
 export class RegisterComponent implements OnInit {
 
   @Input() user: User = {
-    id:"",
+    id: null,
     nome: "",
     dataNascimento: "",
     email: "",
-    senha: ""
+    senha: "",
+    login: ""
   }
 
   constructor(private userService: UserService) { }
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit {
 
   cadastrarUsuario(): void{
     console.log(this.user);
-    this.userService.createUser(this.user)    
+    this.userService.createUser(this.user);
   }
 
 }

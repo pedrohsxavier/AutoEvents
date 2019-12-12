@@ -15,6 +15,7 @@ import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
 import { EventService } from './events/events.service'
 import { SharedModule } from './shared/shared.module'
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 // import { RegisterEventComponent} from './events/register/register.component'
 
 
@@ -33,7 +34,8 @@ import { SharedModule } from './shared/shared.module'
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [UserService, EventService],
   bootstrap: [AppComponent]

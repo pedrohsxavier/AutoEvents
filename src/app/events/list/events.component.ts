@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from './../events.service'
 import { Event } from '../event/event.model'
+import { Subscription } from 'rxjs';
+import { User } from './../../user/user.model'
+import { ActivatedRoute, Router } from '@angular/router'
+import { AuthenticationService } from './../../auth/auth.service'
 
 @Component({
   selector: 'pae-events',
@@ -9,13 +13,22 @@ import { Event } from '../event/event.model'
 })
 export class EventsComponent implements OnInit {
 
+  currentUserSubscription: Subscription;
+  currentUser: User
   events: Event[]
 
-  constructor(private eventService: EventService) { }
+  constructor(private authenticationService: AuthenticationService,
+              private eventService: EventService,
+              private route: ActivatedRoute,
+              private router: Router) {
+                this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+                  this.currentUser = user;
+                });
+ }
 
   ngOnInit() {
     this.eventService.getEvents().subscribe((res: any[]) => {
-      this.events = res.content;      
+      this.events = res.content;
     }, err => {
       console.log(err);
     });

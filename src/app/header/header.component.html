@@ -178,12 +178,30 @@
             </a>
           </div>
         </li>
-        <li class="nav-item dropdown no-arrow">
+        <li class="nav-item dropdown no-arrow" *ngIf="currentUser">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{currentUser.nome}}</span>
+                <img class="img-profile rounded-circle" src="assets/images/profile.jpg">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" (click)="logout()" data-toggle="modal" [swal]="['Sucesso', 'Logout realizado com sucesso', 'success']">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </button>
+              </div>
+            </li>
+        <li class="nav-item dropdown no-arrow" *ngIf="!currentUser">
           <a class="nav-link dropdown-toggle" [routerLink]="['./register']" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             CADASTRO
           </a>
         </li>
-        <li class="nav-item dropdown no-arrow">
+        <li class="nav-item dropdown no-arrow" *ngIf="!currentUser">
           <a class="nav-link dropdown-toggle" [routerLink]="['./login']" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             LOGIN
           </a>
