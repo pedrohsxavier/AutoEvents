@@ -9,5 +9,6 @@ export const ROUTES: Routes = [
   {path:'login', component: AuthComponent},
   {path:'register', component: RegisterComponent},
   {path:'events', loadChildren: './events/events.module#EventsModule'},
-  {path:'automakers', loadChildren: './automakers/automakers.module#AutomakersModule'}
+  {path:'automakers', loadChildren: './automakers/automakers.module#AutomakersModule'},
+  {path:'cars', loadChildren: './cars/cars.module#CarsModule'}
 ]

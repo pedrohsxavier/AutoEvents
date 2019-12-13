@@ -1,6 +1,6 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
  <h1 class="h3 mb-0 text-gray-800">Montadoras</h1>
- <a [routerLink]="['./register']" class="btn btn-success btn-icon-split">
+ <a [routerLink]="['./register']" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#formModal">
   <span class="icon text-white-50">
     <i class="fas fa-plus"></i>
   </span>
@@ -10,10 +10,50 @@
 
 <!-- Content Row -->
 <div class="row">
-
-
- <div *ngFor="let event of events" class="col-lg-6 mb-4">
-   
-
- </div>
+  <div class="col-md-12">
+    <table class="table">
+    <thead>
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let mont of montadoras">
+        <th scope="row">{{mont.id}}</th>
+        <td>{{mont.nome}}</td>
+        <td>{{mont.pais}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalLongoExemplo">Cadastro de Carros</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="user">
+          <div class="form-group row">
+            <div class="col-sm-12 mb-3 mb-sm-0">
+              <input type="text" class="form-control form-control-user" id="nome" placeholder="Nome da montadora" name="nome" [(ngModel)]="montadora.nome">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12 mb-3 mb-sm-0">
+              <input type="text" class="form-control form-control-user" id="pais" placeholder="País da montadora" name="pais" [(ngModel)]="montadora.pais">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+        <button data-dismiss="modal" (click)="salvarMontadora()" type="button" class="btn btn-primary btn-user" [swal]="['Sucesso', 'Cadastrado com sucesso', 'success']">Salvar mudanças</button>
+      </div>
+    </div>
+  </div>
 </div>
