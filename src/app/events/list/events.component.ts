@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from './../events.service'
-import { Event } from '../event/event.model'
+import { EventService } from './../events.service';
+import { Event } from '../event/event.model';
 import { Subscription } from 'rxjs';
-import { User } from './../../user/user.model'
-import { ActivatedRoute, Router } from '@angular/router'
-import { AuthenticationService } from './../../auth/auth.service'
+import { User } from './../../user/user.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from './../../auth/auth.service';
 
 @Component({
   selector: 'pae-events',
@@ -14,8 +14,8 @@ import { AuthenticationService } from './../../auth/auth.service'
 export class EventsComponent implements OnInit {
 
   currentUserSubscription: Subscription;
-  currentUser: User
-  events: Event[]
+  currentUser: User;
+  events: Event[];
 
   constructor(private authenticationService: AuthenticationService,
               private eventService: EventService,
