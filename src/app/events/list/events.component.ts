@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { User } from './../../user/user.model'
 import { ActivatedRoute, Router } from '@angular/router'
 import { AuthenticationService } from './../../auth/auth.service'
+import { Pageble } from './../../auth/pageble.model'
 
 @Component({
   selector: 'pae-events',
@@ -27,7 +28,7 @@ export class EventsComponent implements OnInit {
  }
 
   ngOnInit() {
-    this.eventService.getEvents().subscribe((res: any[]) => {
+    this.eventService.getEvents().subscribe((res: Pageble) => {
       this.events = res.content;
     }, err => {
       console.log(err);

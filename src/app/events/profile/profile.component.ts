@@ -13,7 +13,16 @@ import { User } from './../../user/user.model'
 })
 export class ProfileComponent implements OnInit {
 
-  @Input() event: Event
+  @Input() event: Event ={
+    id: "0",
+    nome: "",
+    descricao:"",
+    cidade:"",
+    pais:"",
+    ingressoValor: null,
+    usuarioId: null,
+    dataEvento: null
+  }
   currentUserSubscription: Subscription;
   currentUser: User
 

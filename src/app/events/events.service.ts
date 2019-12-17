@@ -4,6 +4,7 @@ import { Event } from './event/event.model'
 import {Observable} from 'rxjs'
 import { tap, map } from 'rxjs/operators';
 import { AUTO_EVENTS } from '../app.api'
+import { Pageble } from './../auth/pageble.model'
 // import {ErrorHandler} from '../app.error-handler'
 
 
@@ -25,8 +26,8 @@ export class EventService{
    );
   }
 
-  getEvents(): Observable<any[]>{
-    return this.http.get<any[]>(`${AUTO_EVENTS}/eventos`)
+  getEvents(): Observable<Pageble>{
+    return this.http.get<Pageble>(`${AUTO_EVENTS}/eventos`)
     .pipe(
       tap(event => console.log(event))
     );

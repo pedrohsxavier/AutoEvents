@@ -17,6 +17,7 @@ import { EventService } from './events/events.service'
 import { SharedModule } from './shared/shared.module'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AutomakerService } from './automakers/automakers.service'
+import { CarsService } from './cars/cars.service'
 // import { RegisterEventComponent} from './events/register/register.component'
 
 
@@ -38,7 +39,7 @@ import { AutomakerService } from './automakers/automakers.service'
     SharedModule,
     SweetAlert2Module.forRoot()
   ],
-  providers: [UserService, EventService, AutomakerService],
+  providers: [UserService, EventService, AutomakerService, CarsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
