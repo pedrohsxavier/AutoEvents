@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { AuthenticationService } from './../../auth/auth.service'
 import { Subscription } from 'rxjs';
 import { User } from './../../user/user.model'
+import { Car } from './../../cars/car.model'
+import { CarsService } from './../../cars/cars.service'
+import { Pageble } from './../../auth/pageble.model'
 
 @Component({
   selector: 'pae-register',
@@ -23,13 +26,18 @@ export class RegisterEventComponent implements OnInit {
     pais: "",
     ingressoValor: null,
     dataEvento: null,
-    usuarioId: 1
+    usuarioId: 1,
+    usuarios: "",
+    carros: ""
   }
+
+  headElements: string[] = ["Nome", "Valor", "Cadastrar"]
 
   constructor(private eventService: EventService,
               private route: ActivatedRoute,
               private router: Router,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private carService: CarsService) {
                 this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
                 this.currentUser = user;
               });
@@ -46,6 +54,7 @@ export class RegisterEventComponent implements OnInit {
   }
 
   cadastrarEvento(): void{
+    console.log(this.currentUser)
     this.event.usuarioId = this.currentUser.id
     if(this.event.id == ""){
       this.eventService.createEvent(this.event).toPromise().then(data =>{

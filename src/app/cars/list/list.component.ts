@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Car } from './../car.model'
 import { CarsService } from './../cars.service'
 import { Pageble } from './../../auth/pageble.model'
+import { Automaker } from './../../automakers/automaker.model'
+import { AutomakerService } from './../../automakers/automakers.service'
 
 @Component({
   selector: 'pae-list',
@@ -18,12 +20,15 @@ export class ListComponent implements OnInit {
     valor:"",
     montadoraId:""
   }
+  montadoras: Automaker[]
 
   headElements: string[] = ["Id", "Nome", "Ano", "Valor", "MontadoraId", "Editar", "Deletar"]
-  constructor(private carService: CarsService) { }
+  constructor(private carService: CarsService,
+              private automakerService: AutomakerService) { }
 
   ngOnInit() {
     this.updateCars()
+    this.updateAutomaker()
   }
 
   saveCar(){
@@ -69,5 +74,13 @@ export class ListComponent implements OnInit {
     this.carService.removeById(id).toPromise().then( data =>{
       console.log(data)
     })
+  }
+
+  updateAutomaker(): void{
+    this.automakerService.getAutomakers().subscribe((res: Pageble) => {
+      this.montadoras = res.content;
+    }, err => {
+      console.log(err);
+    });
   }
 }

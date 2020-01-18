@@ -62,7 +62,10 @@
           </div>
           <div class="form-group row">
             <div class="col-sm-12 mb-3 mb-sm-0">
-              <input type="text" class="form-control form-control-user" id="pais" placeholder="montadora" name="montadora" [(ngModel)]="car.montadoraId">
+              <label for="montadora" id="montLabel">Montadoras</label>
+              <select [(ngModel)]="car.montadoraId" class="form-contro" name="montadora">
+                <option *ngFor="let montadora of montadoras" value="{{montadora.id}}">{{montadora.nome}}</option>
+              </select>
             </div>
           </div>
         </form>
