@@ -24,4 +24,10 @@ export class UserService{
       console.log(data);
     })
   }
+
+  userById(id: string) : Observable<any> {
+      return this.http.get(`${AUTO_EVENTS}/usuarios/${id}`).pipe(
+        tap(event => console.log('fetched event'))
+      );
+  }
 }

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.config.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@sweetalert2/ngx-sweetalert2": "^7.0.1",
+    "amqplib": "^0.5.5",
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
