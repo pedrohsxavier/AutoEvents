@@ -7,10 +7,12 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "1.2.3",
     "@angular/animations": "~8.2.0",
     "@angular/common": "~8.2.0",
     "@angular/compiler": "~8.2.0",
