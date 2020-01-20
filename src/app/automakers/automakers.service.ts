@@ -4,6 +4,7 @@ import { Automaker } from './automaker.model'
 import {Observable} from 'rxjs'
 import { tap, map } from 'rxjs/operators';
 import { AUTO_EVENTS } from '../app.api'
+import { Pageble } from './../auth/pageble.model'
 // import {ErrorHandler} from '../app.error-handler'
 
 
@@ -13,10 +14,10 @@ export class AutomakerService{
   constructor(private http: HttpClient){
   }
 
-  createAutomaker(automaker: Automaker): void{
-    this.http.post(`${AUTO_EVENTS}/montadoras`, automaker).toPromise().then(data => {
-      console.log(data);
-    })
+  createAutomaker(automaker: Automaker): Observable<any>{
+    return this.http.post(`${AUTO_EVENTS}/montadoras`, automaker).pipe(
+     tap(automaker => console.log('fetched automaker'))
+   );
   }
 
   updateAutomaker(automaker: Automaker): Observable<any>{
@@ -25,8 +26,8 @@ export class AutomakerService{
    );
   }
 
-  getAutomakers(): Observable<any[]>{
-    return this.http.get<any[]>(`${AUTO_EVENTS}/montadoras`)
+  getAutomakers(): Observable<Pageble>{
+    return this.http.get<Pageble>(`${AUTO_EVENTS}/montadoras`)
     .pipe(
       tap(automaker => console.log(automaker))
     );
@@ -38,7 +39,7 @@ export class AutomakerService{
       );
   }
 
-  removeById(id: string) :  Observable<any> {
+  removeById(id: number) :  Observable<any> {
       return this.http.delete(`${AUTO_EVENTS}/montadoras/${id}`).pipe(
         tap(automaker => console.log('fetched automaker'))
       );

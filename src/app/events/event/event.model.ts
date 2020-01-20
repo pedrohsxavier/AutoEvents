@@ -7,5 +7,7 @@ export interface Event {
   pais: string
   ingressoValor: number
   dataEvento: Date
-  usuarioId: number
+  usuarioId: number,
+  usuarios: string,
+  carros: string
 }

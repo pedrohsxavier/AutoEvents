@@ -4,6 +4,9 @@ import { Event } from './event/event.model'
 import {Observable} from 'rxjs'
 import { tap, map } from 'rxjs/operators';
 import { AUTO_EVENTS } from '../app.api'
+import { Pageble } from './../auth/pageble.model'
+import { User } from './../user/user.model'
+import { Car } from './../cars/car.model'
 // import {ErrorHandler} from '../app.error-handler'
 
 
@@ -25,8 +28,8 @@ export class EventService{
    );
   }
 
-  getEvents(): Observable<any[]>{
-    return this.http.get<any[]>(`${AUTO_EVENTS}/eventos`)
+  getEvents(): Observable<Pageble>{
+    return this.http.get<Pageble>(`${AUTO_EVENTS}/eventos`)
     .pipe(
       tap(event => console.log(event))
     );
@@ -42,6 +45,18 @@ export class EventService{
       return this.http.delete(`${AUTO_EVENTS}/eventos/${id}`).pipe(
         tap(event => console.log('fetched event'))
       );
+  }
+
+  subscribeUser(user: User, eventId: string):  Observable<any>{
+    return this.http.post(`${AUTO_EVENTS}/eventos/${eventId}/usuarios`, user).pipe(
+      tap(event => console.log("fetch"))
+    );
+  }
+
+  addCar(car: Car, eventId: string):  Observable<any>{
+    return this.http.post(`${AUTO_EVENTS}/eventos/${eventId}/carros`, car).pipe(
+      tap(event => console.log("fetch"))
+    );
   }
 
 }

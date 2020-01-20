@@ -10,7 +10,28 @@
 
 <!-- Content Row -->
 <div class="row">
-
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table id="mytable" class="table table-bordred table-striped">
+        <thead>
+          <tr>
+            <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+          </tr>
+        </thead>
+       <tbody>
+         <tr mdbTableCol *ngFor="let carro of cars">
+           <th scope="row">{{carro.id}}</th>
+           <td>{{carro.nome}}</td>
+           <td>{{carro.ano}}</td>
+           <td>{{carro.valor}}</td>
+           <td>{{carro.montadoraId}}</td>
+           <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#formModal" (click)="setCar(carro)"><i class="fas fa-edit"></i></button></p></td>
+           <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal"><i class="fas fa-trash" (click)="deleteCar(carro.id)"></i></button></p></td>
+         </tr>
+       </tbody>
+  </table>
+  </div>
+</div>
 </div>
 
 <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
@@ -26,14 +47,32 @@
         <form class="user">
           <div class="form-group row">
             <div class="col-sm-12 mb-3 mb-sm-0">
-              <input type="text" class="form-control form-control-user" id="eventTitle" placeholder="Titulo do Evento" name="nome">
+              <input type="text" class="form-control form-control-user" id="nome" placeholder="Nome do carro" name="nome" [(ngModel)]="car.nome">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12 mb-3 mb-sm-0">
+              <input type="text" class="form-control form-control-user" id="pais" placeholder="Ano do carro" name="ano" [(ngModel)]="car.ano">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12 mb-3 mb-sm-0">
+              <input type="text" class="form-control form-control-user" id="pais" placeholder="valor do carro" name="pais" [(ngModel)]="car.valor">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12 mb-3 mb-sm-0">
+              <label for="montadora" id="montLabel">Montadoras</label>
+              <select [(ngModel)]="car.montadoraId" class="form-contro" name="montadora">
+                <option *ngFor="let montadora of montadoras" value="{{montadora.id}}">{{montadora.nome}}</option>
+              </select>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary btn-user btn-block" [swal]="['Sucesso', 'Cadastrado com sucesso', 'success']">Salvar mudanças</button>
+        <button data-dismiss="modal" (click)="saveCar()" type="button" class="btn btn-primary btn-user" [swal]="['Sucesso', 'Cadastrado com sucesso', 'success']">Salvar mudanças</button>
       </div>
     </div>
   </div>
