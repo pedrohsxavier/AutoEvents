@@ -16,6 +16,3 @@ res.sendFile(path.join(__dirname+'/dist/autoevents-frontend/index.html'));
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
 
-
-// package.json -> scripts:
-// "heroku-postbuild": "ng build-prod",
